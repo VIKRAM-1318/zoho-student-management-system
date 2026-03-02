@@ -1,0 +1,1015 @@
+/*
+ * Author       : rv367629
+ * Generated on : 02-Mar-2026 18:57:27
+ * Version      : 1.0
+ */
+ application "Student Management System"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+ 	forms
+	{
+		form Attendance
+		{
+			success message = "Attendance Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Attendance_ID
+			(
+    			type = autonumber
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Student
+			(
+				type = picklist	
+				values  = Student.ID
+    			displayformat = [Student_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			STATUS
+			(
+				type = picklist
+				maxchar = 100
+				values = {"PRESENT","ABSENT"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Faculty
+			(
+				type = picklist	
+				values  = Faculty.ID
+    			displayformat = [Faculty_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Present_Flag
+			(
+    			type = formula
+				value =  if(STATUS == "Present",1,0)
+				visibility = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		print template
+			{
+				REPORT1
+				{
+							displayname = "REPORT"
+							content = {"pageNumberOption":null,"orientation":"null","images":[{"fileName":"","imageId":"","imageType":"","fileId":""},{"fileName":"","imageId":"","imageType":"","fileId":""}],"imageId":"","isFooterEnabled":true,"footer":{"imageId":"","elements":[{"type":"columns","element":{"split":"100","id":"u_elem_2267415","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{"id":"u_elem_22674379999999702","fields":[],"content":"<div style=\"\">\n   <p style=\"text-align: center\">THANK YOU<\/p>\n  <\/div>"}}]}]}}],"style":"background-repeat: no-repeat; background-size: 127%; background-position: -110px -29px; background-image: url(https://static.zohocdn.com/creator/appbuilder/images/print-templates/invoice2-footer.0f118a5c3e4001ca332ebfd2457dad83.png)","bgImg":""},"containerStyle":"","templateStyle":"text-align: left; width: 793.7px; margin: 0px auto; padding: 30px","version":"2","layout":"1","mainLayout":[{"elements":[{"type":"columns","element":{"split":"47,53","id":"u_elem_226724","elemStyle":"","collayouts":[{"colElements":[{"type":"columns","element":{"split":"100","id":"u_elem_2267288999999985","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{"id":"u_elem_22672919999999925","fields":[],"content":"<div style=\"\">\n   <p><br /><\/p>\n  <\/div>"}}]}]}}]},{"colElements":[{"id":"u_elem_2850043999999985","type":"fields","element":{"Lookup_Label_Name":"Student","valueStyle":"width: 50%","valueTextStyle":"","fieldLayoutType":"2","labelText":"Student_Name","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"Student_Name","labelTextStyle":""}}]}]}},{"type":"columns","element":{"split":"100","id":"u_elem_2267293999999985","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{"id":"u_elem_2267293999999985","fields":[],"content":"<div style=\"\">\n   <br />\n   <br />\n  <\/div>"}}]}]}},{"type":"columns","element":{"split":"19,16,42,21,2","id":"u_elem_22673319999999925","elemStyle":"","collayouts":[{"colElements":[{"id":"u_elem_41343669999999925","type":"fields","element":{"Lookup_Label_Name":"Student","valueStyle":"width: 50%","valueTextStyle":"","fieldLayoutType":"2","labelText":"Department","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"Department","labelTextStyle":""}}]},{"colElements":[{"id":"u_elem_4488855","type":"fields","element":{"Lookup_Label_Name":"Student","valueStyle":"width: 50%","valueTextStyle":"","fieldLayoutType":"2","labelText":"YEAR","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"YEAR_field","labelTextStyle":""}}]},{"colElements":[{"id":"u_elem_43442759999999776","type":"fields","element":{"Lookup_Label_Name":"Student","valueStyle":"width: 50%","valueTextStyle":"","fieldLayoutType":"2","labelText":"Phone","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"Phone_Number","labelTextStyle":""}}]},{"colElements":[{"id":"u_elem_47297219999999925","type":"fields","element":{"Lookup_Label_Name":"Student","valueStyle":"width: 50%","valueTextStyle":"","fieldLayoutType":"2","labelText":"Student_ID","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"Student_ID","labelTextStyle":""}}]},{"colElements":[{"type":"text","element":{"id":"u_elem_22673319999999925","fields":[],"content":"<div style=\"\">\n   <br />\n   <br />\n  <\/div>"}}]}]}},{"type":"columns","element":{"split":"38,31,31","id":"u_elem_5451808999999985","elemStyle":"","collayouts":[{"colElements":[{"id":"u_elem_5451800999999978","type":"fields","element":{"valueStyle":"width: 50%","valueTextStyle":"","fieldLayoutType":"2","labelText":"Attendance_ID","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"Attendance_ID","labelTextStyle":""}}]},{"colElements":[{"id":"u_elem_6267565","type":"fields","element":{"valueStyle":"width: 50%","valueTextStyle":"","fieldLayoutType":"2","labelText":"Date","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"Date_field","labelTextStyle":""}}]},{"colElements":[{"id":"u_elem_6436683999999985","type":"fields","element":{"valueStyle":"width: 50%","valueTextStyle":"","fieldLayoutType":"2","labelText":"STATUS","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"STATUS","labelTextStyle":""}}]}]}}],"id":1}],"resize":"a4","themeFont":"lato","isHeaderEnabled":false}
+				}
+			}
+		}
+		form Faculty
+		{
+			success message = "Faculty Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Faculty_ID
+			(
+    			type = autonumber
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Faculty_Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+				maxchar = 80
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			DEPARTMENT
+			(
+				type = picklist	
+				values  = Student.ID
+    			displayformat = [Department]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have STATUS
+			(
+				type = picklist
+				maxchar = 100
+				values = {"ACTIVE","INACTIVE"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Student
+		{
+			success message = "Student Added Successfully"
+			Phone
+			(
+				type = section
+				visibility = true
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Student_ID
+			(
+    			type = autonumber
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Student_Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+				maxchar = 80
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			Department
+			(
+				type = picklist
+				maxchar = 100
+				values = {"ECE","CSE","EEE","CSE-AI","CIVIL","MECH","AIDS"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			YEAR_field
+			(
+				type = picklist
+				displayname = "YEAR"
+				maxchar = 100
+				values = {"YEAR-1","YEAR-2","YEAR-3","YEAR-4"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			STATUS
+			(
+				type = picklist
+				maxchar = 100
+				values = {"ACTIVE","INACTIVE"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	reports
+	{
+		default list All_Students
+		{
+			displayName = "All Students"
+			show all rows from Student    
+			(
+				Student_ID
+				Student_Name
+				Email
+				Phone_Number as "Phone"
+				(
+					displayformat = plainnumber 
+					linktodial = enable
+				)
+				Department
+				YEAR_field as "YEAR"
+				STATUS
+			)
+		}
+		default list All_Attendances
+		{
+			displayName = "All Attendances"
+			show all rows from Attendance    
+			(
+				Attendance_ID
+				Student
+				Date_field as "Date"
+				STATUS
+				Faculty
+				Present_Flag
+			)
+		}
+		default list All_Faculties
+		{
+			displayName = "All Faculties"
+			show all rows from Faculty    
+			(
+				Faculty_ID
+				Faculty_Name
+				Email
+				DEPARTMENT
+				STATUS
+			)
+		}
+		list ATTENDANCE_REPORT
+		{
+			displayName = "ATTENDANCE REPORT"
+			print template = REPORT1
+			show all rows from Attendance    
+			(
+				Attendance_ID
+				Student
+				Date_field as "Date"
+				STATUS
+				Faculty
+			)
+			filters
+			(
+				Student
+				Date_field
+				STATUS
+				Faculty
+			)
+			group by
+			(
+				Student ascending
+			)
+		}
+		pivottable ATTENDANCE1
+		{ 
+			displayname = "ATTENDANCE"
+			layout = 4
+			report properties
+			(
+				records displayed = all_records
+				allow export = false
+				allow drilldown and view underlying data = false
+		
+			)
+
+			based on Autoview_1772455809179_Attendance
+				show all rows from Attendance
+				(
+			Attendance_ID 
+			Student 
+			Date_field  as "Date"
+			STATUS 
+			Faculty 
+			Present_Flag 
+				)
+		}
+	}
+
+
+		workflow
+		{
+		form
+		{
+			Check_Duplicate_Student_E as "Check_Duplicate_Student_Email"
+			{
+				type =  form
+				form = Student
+
+				record event = on add or edit
+
+				on user input of Email
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Student[Email == input.Email].count() > 0)
+										{
+											alert "Email already exists";
+											input.Email = "";
+										}
+						)
+					}
+				}
+
+			}
+		}
+
+
+
+
+
+
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Developer"
+			{
+				name = "Developer"
+				type = Developer
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Developer Profile\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+
+	web
+	{
+		forms
+		{
+			form Attendance
+			{
+				label placement = left
+			}
+			form Faculty
+			{
+				label placement = left
+			}
+			form Student
+			{
+				label placement = left
+			}
+		}
+		reports
+		{
+			report All_Students
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Student_ID
+								Student_Name
+								Email
+								Phone_Number as "Phone"
+								Department
+								YEAR_field as "YEAR"
+								STATUS
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Student_ID
+								Student_Name
+								Email
+								Phone_Number as "Phone"
+								Department
+								YEAR_field as "YEAR"
+								STATUS
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report All_Attendances
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Attendance_ID
+								Student
+								Date_field as "Date"
+								STATUS
+								Faculty
+								Present_Flag
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Attendance_ID
+								Student
+								Date_field as "Date"
+								STATUS
+								Faculty
+								Present_Flag
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report All_Faculties
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Faculty_ID
+								Faculty_Name
+								Email
+								DEPARTMENT
+								STATUS
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Faculty_ID
+								Faculty_Name
+								Email
+								DEPARTMENT
+								STATUS
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report ATTENDANCE_REPORT
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Attendance_ID
+								Student
+								Date_field as "Date"
+								STATUS
+								Faculty
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Attendance_ID
+								Student
+								Date_field as "Date"
+								STATUS
+								Faculty
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report ATTENDANCE1
+			{
+				layout = 4
+			}
+		}
+		menu
+		{
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section Students
+				{
+					displayname = "Students"
+					icon = "education-pencil-47"
+					form  Student
+					{
+						icon = "education-pencil-47"
+					}
+					report All_Students
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section App_Preferences
+				{
+					displayname = "App Preferences"
+					icon = "design-app"
+					systemcomponent
+					{
+						type = localization
+						displayname = "Language Selection"
+						icon = "education-language"
+					}
+					systemcomponent
+					{
+						type = connection
+						displayname = "Integrations"
+						icon = "tech-2-connection"
+					}
+				}
+				section Approvals
+				{
+					displayname = "Approvals"
+					icon = "ui-2-hourglass"
+					systemcomponent
+					{
+						type = approval
+						approval status = pending
+						displayname = "Pending Tasks"
+						icon = "ui-2-hourglass"
+					}
+					systemcomponent
+					{
+						type = approval
+						approval status = completed
+						displayname = "Completed Tasks"
+						icon = "design-todo"
+					}
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+				section Attendances
+				{
+					displayname = "Attendances"
+					icon = "tech-desktop"
+					form  Attendance
+					{
+						icon = "users-2-voice-record"
+					}
+					report All_Attendances
+					{
+						icon = "tech-desktop"
+					}
+					report ATTENDANCE_REPORT
+					{
+						icon = "users-2-voice-record"
+					}
+ 
+					report ATTENDANCE1
+					{
+						icon = "users-2-voice-record"
+					}
+				}
+				section Faculties
+				{
+					displayname = "Faculties"
+					icon = "business-businessman-03"
+					form  Faculty
+					{
+						icon = "business-businessman-03"
+					}
+					report All_Faculties
+					{
+						icon = "tech-desktop"
+					}
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = outline
+				}
+			}
+		}
+		customize
+		{
+			layout
+			{
+				theme = "theme_3"
+			}
+			font = "lato"
+			color options
+			{
+				color = "11"
+			}
+			logo
+			{
+				preference = "app_icon"
+				placement = "left"
+			}
+		}
+	}
+	phone
+	{
+		forms
+		{
+			form Attendance
+			{
+				label placement = auto
+			}
+			form Faculty
+			{
+				label placement = auto
+			}
+			form Student
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "3"
+			color options
+			{
+				color = blue
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	tablet
+	{
+		forms
+		{
+			form Attendance
+			{
+				label placement = auto
+			}
+			form Faculty
+			{
+				label placement = auto
+			}
+			form Student
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "3"
+			color options
+			{
+				color = blue
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	translation
+{
+{"Language_Settings":{"LANGAGUE_WITH_LOGIN":"browser"}}
+}
+	reports configuration
+	{
+	
+		Version = 2000049149471
+		Key     = "x40QnvfQRx6ABQGj18gQn3nXSTx8X9w6Z3YY2Ahruq6VYtG8aVgOHyV65PRHwvbfGazYUr6PaXr61D1q7AfKS0vWB0UPBDw2VCU5"
+	}
+}
